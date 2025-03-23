@@ -72,6 +72,9 @@ jobs:
           KAFKA_LEADER_IMBALANCE_CHECK_INTERVAL_SECONDS: 5
           KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
     steps:
+      - uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
       - name: "Install packages"
         run: apt-get update && apt-get install -y git
       - name: Checkout repository
