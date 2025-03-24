@@ -1,0 +1,31 @@
+jobs:
+  foo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+    - name: Start Falco
+      uses: falcosecurity/falco-actions/start@<commit-sha>
+      with:
+        mode: analyze
+        
+    # ...
+    # Your steps here
+    # ...
+
+    - name: Stop Falco
+      uses: falcosecurity/falco-actions/stop@<commit-sha>
+      with:
+        mode: analyze
+  
+  analyze-foo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+    - name: Analyze
+      uses: falcosecurity/falco-actions/analyze@<commit-sha>
+      with:
+        falco-version: '0.39.0'
